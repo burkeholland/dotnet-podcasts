@@ -29,6 +29,11 @@ internal sealed class Worker : BackgroundService
                 try
                 {
                     var (title, url, categories) = retrievedMessage.Value.Body.ToObjectFromJson<NewFeedRequested>();
+
+                    title = this.ValidateTitle(title);
+                    url = this.ValidateUrl(url);
+                    var desc = this.ValidateDescription(url);
+
                     await handler.HandleIngestionAsync(title, url, categories, stoppingToken);
                 }
                 catch (Exception ex)
@@ -43,5 +48,22 @@ internal sealed class Worker : BackgroundService
 
             await Task.Delay(1000, stoppingToken);
         }
+    }
+
+    private string ValidateTitle(string title) 
+    {
+        return string.Empty; 
+    }
+
+    private string ValidateUrl(string url)
+    {
+        return string.Empty;
+    }
+
+    private string ValidateDescription(string url)
+    {
+        // get rss info from, get site description
+
+        return string.Empty;
     }
 }
