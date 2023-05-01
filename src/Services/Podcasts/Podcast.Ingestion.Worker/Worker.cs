@@ -30,7 +30,6 @@ internal sealed class Worker : BackgroundService
                 {
                     var (title, url, categories) = retrievedMessage.Value.Body.ToObjectFromJson<NewFeedRequested>();
 
-                    title = this.ValidateTitle(title);
                     url = this.ValidateUrl(url);
                     var desc = this.ValidateDescription(url);
 
@@ -50,17 +49,12 @@ internal sealed class Worker : BackgroundService
         }
     }
 
-    private string ValidateTitle(string title) 
-    {
-        return string.Empty; 
-    }
-
     private string ValidateUrl(string url)
     {
         return string.Empty;
     }
 
-    private string ValidateDescription(string url)
+    private string RetrieveDescription(string url)
     {
         // get rss info from, get site description
 
