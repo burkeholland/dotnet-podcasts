@@ -31,7 +31,7 @@ internal sealed class Worker : BackgroundService
                     var (title, url, categories) = retrievedMessage.Value.Body.ToObjectFromJson<NewFeedRequested>();
 
                     url = this.ValidateUrl(url);
-                    var desc = this.ValidateDescription(url);
+                    var desc = this.RetrieveDescription(url);
 
                     await handler.HandleIngestionAsync(title, url, categories, stoppingToken);
                 }
