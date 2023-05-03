@@ -27,28 +27,21 @@ public class PodcastUpdateHandler : IPodcastUpdateHandler
         {
             _logger.LogInformation("Updating feed: {url}", feed.Url);
 
-            try
+            var show = await _feedClient.GetShowAsync(feed, cancellationToken);
+
+            if (!show.Episodes.Any()) continue;
+
+            if (feed.Show == null)
             {
-                var show = await _feedClient.GetShowAsync(feed, cancellationToken);
-
-                if (!show.Episodes.Any()) continue;
-
-                if (feed.Show == null)
-                {
-                    feed.Show = show;
-                }
-                else
-                {
-                    var newEpisodes = GetNewEpisodes(feed.Show.Episodes, show.Episodes);
-                    newEpisodes.ToList().ForEach(episode => feed.Show.Episodes.Add(episode));
-                }
-
-                await _podcastDbContext.SaveChangesAsync(cancellationToken);
+                feed.Show = show;
             }
-            catch (Exception ex)
+            else
             {
-                _logger.LogError("Error updating feed: {error}", ex.Message);
+                var newEpisodes = GetNewEpisodes(feed.Show.Episodes, show.Episodes);
+                newEpisodes.ToList().ForEach(episode => feed.Show.Episodes.Add(episode));
             }
+
+            await _podcastDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 
