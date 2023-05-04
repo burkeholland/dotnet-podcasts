@@ -19,6 +19,18 @@ namespace Podcast.Server.Pages
         {
             var shows = await _podcastService.GetShows(50, null);
             FeaturedShows = shows?.Where(s => s.IsFeatured).ToArray();
+
+            RetrieveSupportInfo();
+        }
+
+        public async void RetrieveSupportInfo()
+        {
+            var shows = await _podcastService.GetShows(50, null);
+            FeaturedShows = shows?.Where(s => s.IsFeatured).ToArray();
+
+            var leadauthor = FeaturedShows.FirstOrDefault().Author;
+
+            await Response.WriteAsync(string.Format($"Logging the number featured shows {0}", leadauthor));
         }
     }
 }
