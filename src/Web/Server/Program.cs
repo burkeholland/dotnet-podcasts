@@ -1,5 +1,6 @@
 using Podcast.Components;
 using Podcast.Pages.Data;
+using Podcast.Server.Services;
 using Podcast.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ builder.Services.AddScoped<ClipboardInterop>();
 builder.Services.AddScoped<SubscriptionsService>();
 builder.Services.AddScoped<ListenLaterService>();
 builder.Services.AddSingleton<PlayerService>();
+builder.Services.AddSingleton<LegacyService>();
 builder.Services.AddScoped<ListenTogetherHubClient>(_ =>
     new ListenTogetherHubClient(builder.Configuration["ListenTogetherHub"]!));
 
