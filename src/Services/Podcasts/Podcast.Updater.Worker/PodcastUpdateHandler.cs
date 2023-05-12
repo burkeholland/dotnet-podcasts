@@ -10,6 +10,7 @@ public class PodcastUpdateHandler : IPodcastUpdateHandler
     private readonly ILogger<PodcastUpdateHandler> _logger;
     private readonly IFeedClient _feedClient;
     private readonly PodcastDbContext _podcastDbContext;
+    private static readonly Guid DEFAULT_SHOW_ID = new Guid("936DA01F-9ABD-4d9d-80C7-02AF85C822A8");
 
     public PodcastUpdateHandler(PodcastDbContext podcastDbContext,
         ILogger<PodcastUpdateHandler> logger, IFeedClient feedClient)
@@ -38,7 +39,6 @@ public class PodcastUpdateHandler : IPodcastUpdateHandler
             else
             {
                 var newEpisodes = GetNewEpisodes(feed.Show.Episodes, show.Episodes);
-                newEpisodes.ToList().ForEach(episode => feed.Show.Episodes.Add(episode));
             }
 
             await _podcastDbContext.SaveChangesAsync(cancellationToken);
