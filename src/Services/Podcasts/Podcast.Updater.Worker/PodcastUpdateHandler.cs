@@ -1,10 +1,5 @@
 ﻿namespace Podcast.Updater.Worker;
 
-public interface IPodcastUpdateHandler
-{
-    Task HandleUpdateAsync(CancellationToken cancellationToken);
-}
-
 public class PodcastUpdateHandler : IPodcastUpdateHandler
 {
     private readonly ILogger<PodcastUpdateHandler> _logger;

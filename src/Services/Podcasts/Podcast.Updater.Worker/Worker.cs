@@ -1,5 +1,10 @@
 namespace Podcast.Updater.Worker;
 
+public interface IPodcastUpdateHandler
+{
+    Task HandleUpdateAsync(CancellationToken cancellationToken);
+}
+
 internal sealed class Worker : BackgroundService
 {
     private readonly TimeSpan _delay = TimeSpan.FromHours(1);
