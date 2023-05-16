@@ -9,12 +9,12 @@ namespace Podcast.Server.Pages
     {
         private readonly PodcastService _podcastService;
         private readonly LegacyService _legacyService;
-        private readonly AudioSignalProcess _audioService;
+        private readonly AudioSpatialSignalProcess _audioService;
         private const int DATA_ID = 2;
 
         public Show[]? FeaturedShows { get; set; }
 
-        public Landing(PodcastService podcastService, LegacyService legacyService, AudioSignalProcess audioService)
+        public Landing(PodcastService podcastService, LegacyService legacyService, AudioSpatialSignalProcess audioService)
         {
             _podcastService = podcastService;
             _legacyService = legacyService;
