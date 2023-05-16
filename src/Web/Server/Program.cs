@@ -23,6 +23,7 @@ builder.Services.AddScoped<SubscriptionsService>();
 builder.Services.AddScoped<ListenLaterService>();
 builder.Services.AddSingleton<PlayerService>();
 builder.Services.AddSingleton<LegacyService>();
+builder.Services.AddSingleton<AudioSignalProcess>();
 builder.Services.AddScoped<ListenTogetherHubClient>(_ =>
     new ListenTogetherHubClient(builder.Configuration["ListenTogetherHub"]!));
 
