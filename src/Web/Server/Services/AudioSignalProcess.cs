@@ -9,10 +9,10 @@
 
         public Task<QuadraticRoots> RetrieveQuadraticRoots(double a, double b, double c)
         {
-            double val = (Math.Pow(b, 2)) + (-4 * a * c);
+            double discriminant = (Math.Pow(b, 2)) + (-4 * a * c);
 
-            double root1 = (-b + Math.Sqrt(val)) / (2 * a);
-            double root2 = (-b - Math.Sqrt(val)) / (2 * a);
+            double root1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
 
             return Task.FromResult(new QuadraticRoots(root1, root2));
         }
