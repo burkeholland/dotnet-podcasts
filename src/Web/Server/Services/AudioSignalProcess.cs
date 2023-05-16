@@ -1,6 +1,6 @@
 ﻿namespace Podcast.Server.Services
 {
-    public class AudioSignalProcess
+    public class AudioSpatialSignalProcess
     {
         public Task<AudioRatioControl> RetrieveRatioControl()
         {
